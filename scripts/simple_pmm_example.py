@@ -15,7 +15,7 @@ class SimplePMM(ScriptStrategyBase):
     order_amount = 0.01
     create_timestamp = 0
     trading_pair = "ETH-USDT"
-    exchange = "bitmex_perpetual_testnet"
+    exchange = "binance_perpetual_testnet"
     # Here you can use for example the LastTrade price to use in your strategy
     price_source = PriceType.MidPrice
 
@@ -37,12 +37,12 @@ class SimplePMM(ScriptStrategyBase):
         accountPosition = self.connectors[self.exchange].account_positions
         self.logger().info(f"Account Position: {accountPosition}")
 
-        if self.create_timestamp <= self.current_timestamp:
-            self.cancel_all_orders()
-            # proposal: List[OrderCandidate] = self.create_proposal()
-            # proposal_adjusted: List[OrderCandidate] = self.adjust_proposal_to_budget(proposal)
-            # self.place_orders(proposal_adjusted)
-            # self.create_timestamp = self.order_refresh_time + self.current_timestamp
+        # if self.create_timestamp <= self.current_timestamp:
+        #     self.cancel_all_orders()
+        #     proposal: List[OrderCandidate] = self.create_proposal()
+        #     proposal_adjusted: List[OrderCandidate] = self.adjust_proposal_to_budget(proposal)
+        #     self.place_orders(proposal_adjusted)
+        #     self.create_timestamp = self.order_refresh_time + self.current_timestamp
 
     def create_proposal(self) -> List[OrderCandidate]:
         ref_price = self.connectors[self.exchange].get_price_by_type(self.trading_pair, self.price_source)
